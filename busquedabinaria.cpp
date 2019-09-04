@@ -10,7 +10,8 @@ int main()
 int num;
 cin >> num;
 
-cout << buscar(0, 7, num);
+cout << "esta en la posicion " <<  buscar(0, 7, num) << " del arreglo" << endl; 
+if (buscar(0, 7, num) == -1) cout << "(no se encuentra en el arreglo)" << endl;
 }
 
 int buscar (int low, int high, int num){
@@ -20,5 +21,4 @@ int buscar (int low, int high, int num){
 	if (num == a[mid]) return (mid);
 	if (num < a[mid]) return (buscar(low, mid-1, num));
 	else return (buscar(mid+1, high, num));
-	
 }
