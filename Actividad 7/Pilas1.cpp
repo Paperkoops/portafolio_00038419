@@ -1,45 +1,126 @@
-void destruir_pila( ptrPila &p)
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct pilas
 {
-ptrPila aux;
+    int d;
+    pilas * a;
+}* c, * e;
 
-while( p != NULL)
+
+
+void ingresar(void);
+
+void sacar(void);
+
+void actualizarPila(void);
+
+
+
+main()
 {
-aux = p;
-p = aux->sgte;
-delete(aux);
+    int y, opc;
+
+    for (;;)
+
+    {
+
+        cout << "1. Ingresar datos" << endl;
+
+        cout << "2. Sacar datos" << endl;
+
+        cout << "0. Terminar" << endl;
+
+        cout << "Ingrese opcion: " << endl;
+        cin >> opc;
+
+        switch (opc)
+
+        {
+            case 1:
+                ingresar();
+
+                break;
+            case 2:
+                sacar();
+                break;
+            case 0:
+                exit(1);
+            default:
+                cout << "\n Opcion no valida!!";
+                break;
+        }
+        actualizarPila();
+    }
 }
-}
-int pop( ptrPila &p )
+
+void ingresar(void)
 {
-int num ;
-ptrPila aux;
+    if (!c)
+    {
+        c = new(pilas);
+        cout << "Ingrese elemento: ";
+        cin >> c -> d;
+        c -> a = NULL;
+        return;
+    }
 
-aux = p ;
-num = aux->nro; // asignamos el primer vamor de la pila
 
-p = aux->sgte ;
-delete(aux);
 
-return num;
+    e = new(pilas);
+    cout << "\nIngrese elemento: ";
+    cin >> e -> d;
+    e -> a = c;
+    c = e;
+
 }
+
+
+
 void sacar(void)
 {
-if(!c)
+    if (!c)
+    {
+        cout << "\n\nNo hay elementos!!";
+        return;
+    }
+
+
+
+    e = new(pilas);
+    e = c;
+    cout << "\n\nElemento eliminado: " << e -> d;
+    c = e -> a;
+    delete(e);
+}
+
+void actualizarPila(void)
+
 {
-cout<<"\n\nNo hay elementos!!";
-return;
+
+    int y = 2, i, ca = 0;
+    e = c;
+    while (e)
+    {
+        ca++;
+        e = e -> a;
+    }
+
+
+    for (i = 0; i <= ca; i++)
+    {
+        cout << " ";
+    }
+
+    
+    i = 0;
+    e = c;
+    while (e)
+    {
+        cout << "\n";
+        cout << ++i << " - " << e -> d;
+        e = e -> a;
+    }
 }
-
-e=new(pilas);
-e=c;
-cout<<"\n\nElemento eliminado: " <<e->d;
-c=e->a;
-delete(e);
-}
-
-int main() {
-int n = 0, i = 0;
-cout<< "Ingrese la expresion de la pila" << endl;
-cin >> Pila;
-
-sacar ()
